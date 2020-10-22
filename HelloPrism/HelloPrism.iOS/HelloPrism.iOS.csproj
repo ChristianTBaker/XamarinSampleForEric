@@ -93,6 +93,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Custom\Renderers\CustomEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -127,8 +128,12 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\HelloPrism\HelloPrism.csproj">
-      <Project>{12DB7DA2-DC66-4E90-AFD8-EA8CBC0FBBE1}</Project>
+      <Project>{43EBE900-37C6-48D7-9C87-2EADE432C375}</Project>
       <Name>HelloPrism</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Custom\" />
+    <Folder Include="Custom\Renderers\" />
   </ItemGroup>
 </Project>
