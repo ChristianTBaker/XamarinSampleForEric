@@ -1,6 +1,8 @@
 ﻿using Prism;
 using Prism.Ioc;
 using Prism.Unity;
+using HelloPrism.Views;
+using HelloPrism.ViewModels;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]

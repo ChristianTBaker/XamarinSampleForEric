@@ -15,7 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -84,7 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HelloPrism\HelloPrism.csproj">
-      <Project>{12DB7DA2-DC66-4E90-AFD8-EA8CBC0FBBE1}</Project>
+      <Project>{43EBE900-37C6-48D7-9C87-2EADE432C375}</Project>
       <Name>HelloPrism</Name>
     </ProjectReference>
   </ItemGroup>
