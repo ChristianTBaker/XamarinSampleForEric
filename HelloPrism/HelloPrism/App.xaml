@@ -6,6 +6,38 @@
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
             <Color x:Key="BlackText">#FF000000</Color>
+            <Color x:Key="ButtonPrimary">#FFB19595</Color>
+            <Color x:Key="EntryBackground">#FFF5F5F5</Color>
+
+            <Style x:Key="EntryLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="{StaticResource BlackText}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="Margin" Value="0,0,0,5" />
+            </Style>
+
+            <ControlTemplate x:Key="SubmitButton">
+                <Frame BindingContext="{TemplateBinding Parent.BindingContext}"
+                       BackgroundColor="{StaticResource ButtonPrimary}"
+                       CornerRadius="10"
+                       HorizontalOptions="FillAndExpand"
+                       HeightRequest="50"
+                       Padding="0"
+                       Margin="0">
+                    <Label Text="{Binding SubmitButtonLabel}"
+                           TextColor="{StaticResource BlackText}"
+                           FontFamily="Roboto"
+                           FontSize="16"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding SubmitCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </ControlTemplate>
+
         </ResourceDictionary>
     </prism:PrismApplication.Resources>
 </prism:PrismApplication>
