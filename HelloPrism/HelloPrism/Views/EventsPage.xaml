@@ -2,12 +2,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:HelloPrism"
              x:Class="HelloPrism.Views.EventsPage">
-    <StackLayout>
-        <Label Text="Events Page"
-               FontSize="18"
-               Margin="0,20"
-               HorizontalOptions="Center" />
-    </StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ContentView Grid.Row="0" ControlTemplate="{StaticResource PageHeader}"/>
+        <StackLayout Grid.Row="1"
+                     BackgroundColor="{StaticResource ContentBackground}"
+                     Margin="8,0,8,15">
+            <Label Text="Event Placeholer"/>
+            <Label Text="Event Placeholer"/>
+            <Label Text="Event Placeholer"/>
+            <Label Text="Event Placeholer"/>
+            <Label Text="Event Placeholer"/>
+            <Label Text="Event Placeholer"/>
+        </StackLayout>
+        <Frame Grid.Row="2"
+               Margin="0"
+               Padding="12,0,12,5"
+               HasShadow="False">
+            <ContentView ControlTemplate="{StaticResource PrimaryButton}" />
+        </Frame>
+
+    </Grid>
+
 
 
 </ContentPage>

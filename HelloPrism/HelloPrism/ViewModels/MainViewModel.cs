@@ -11,27 +11,27 @@ namespace HelloPrism.ViewModels
     {
         private INavigationService _navigationService;
 
-        public DelegateCommand SubmitCommand { get; private set; }
+        public DelegateCommand PrimaryButtonCommand { get; private set; }
 
         public string Title { get; private set; }
-        public string WelcomeMessage { get; private set; }
+        public string HeaderLabel { get; private set; }
         public string FirstNameLabel { get; private set; }
         public string LastNameLabel { get; private set; }
         public string EmailLabel { get; private set; }
-        public string SubmitButtonLabel { get; private set; }
+        public string PrimaryButtonLabel { get; private set; }
 
         public MainViewModel(INavigationService navigationService)
         {
             this._navigationService = navigationService;
 
             this.Title = "Main Page";
-            this.WelcomeMessage = "Welcome to Xamarin Sample!";
+            this.HeaderLabel = "Welcome to Xamarin Sample!";
             this.FirstNameLabel = "First Name";
             this.LastNameLabel = "Last Name";
             this.EmailLabel = "email";
-            this.SubmitButtonLabel = "View Service Events";
+            this.PrimaryButtonLabel = "View Service Events";
 
-            this.SubmitCommand = new DelegateCommand(Submit, CanSubmit);
+            this.PrimaryButtonCommand = new DelegateCommand(Submit, CanSubmit);
         }
 
         private void Submit()
@@ -41,16 +41,14 @@ namespace HelloPrism.ViewModels
 
         private bool CanSubmit()
         {
-            //if (!string.IsNullOrEmpty(this.FirstNameEntry) &&
-            //    !string.IsNullOrEmpty(this.LastNameEntry) &&
-            //    !string.IsNullOrEmpty(this.EmailEntry))
-            // {
-            //     return true;
-            // }
+            if (!string.IsNullOrEmpty(this.FirstNameEntry) &&
+                !string.IsNullOrEmpty(this.LastNameEntry) &&
+                !string.IsNullOrEmpty(this.EmailEntry))
+            {
+                return true;
+            }
 
-            // return false;
-
-            return true;
+            return false;
         }
 
         private string _firstNameEntry;

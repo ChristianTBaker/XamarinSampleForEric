@@ -4,27 +4,27 @@
              xmlns:local="clr-namespace:HelloPrism" xmlns:controls="clr-namespace:HelloPrism.Controls"
              x:Class="HelloPrism.Views.MainPage">
     <StackLayout Margin="18,0">
-        <Label Text="{Binding WelcomeMessage}"
-               TextColor="{StaticResource BlackText}"
-               FontSize="18"
-               Margin="0,20"
-               HorizontalOptions="Center" />
+        <ContentView ControlTemplate="{StaticResource PageHeader}"/>
 
         <Label Text="{Binding FirstNameLabel}"
                Style="{StaticResource EntryLabelStyle}"/>
 
         <controls:CustomEntry Text="{Binding FirstNameEntry}"
-                              BackgroundColor="{StaticResource EntryBackground}"
-                              HorizontalOptions="FillAndExpand"
-                              HeightRequest="40"
-                              Margin="0,0,0,10"/>
+                              Style="{StaticResource EntryStyle}"/>
 
         <Label Text="{Binding LastNameLabel}"
                Style="{StaticResource EntryLabelStyle}"/>
+
+        <controls:CustomEntry Text="{Binding LastNameEntry}"
+                              Style="{StaticResource EntryStyle}"/>
+
         <Label Text="{Binding EmailLabel}"
                Style="{StaticResource EntryLabelStyle}"/>
 
-        <ContentView ControlTemplate="{StaticResource SubmitButton}" />
+        <controls:CustomEntry Text="{Binding EmailEntry}"
+                              Style="{StaticResource EntryStyle}"/>
+
+        <ContentView ControlTemplate="{StaticResource PrimaryButton}" />
 
     </StackLayout>
 
