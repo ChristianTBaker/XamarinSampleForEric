@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using HelloPrism.Models;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -17,6 +18,8 @@ namespace HelloPrism.ViewModels
         public string HeaderLabel { get; private set; }
         public string PrimaryButtonLabel { get; private set; }
 
+        public Event[] Events { get; private set; }
+
 
         public EventsViewModel(INavigationService navigationService)
         {
@@ -28,6 +31,13 @@ namespace HelloPrism.ViewModels
             this.PrimaryButtonLabel = "Back to Main Page";
 
             this.PrimaryButtonCommand = new DelegateCommand(Back);
+
+            this.Events = new Event[]
+            {
+                new Event(_navigationService, "Inspection", "05 Aug 20"),
+                new Event(_navigationService, "Inspection", "05 Aug 20"),
+                new Event(_navigationService, "Inspection", "05 Aug 20")
+            };
         }
 
         private void Back()

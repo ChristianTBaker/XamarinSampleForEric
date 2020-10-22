@@ -9,16 +9,33 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <ContentView Grid.Row="0" ControlTemplate="{StaticResource PageHeader}"/>
-        <StackLayout Grid.Row="1"
-                     BackgroundColor="{StaticResource ContentBackground}"
-                     Margin="8,0,8,15">
-            <Label Text="Event Placeholer"/>
-            <Label Text="Event Placeholer"/>
-            <Label Text="Event Placeholer"/>
-            <Label Text="Event Placeholer"/>
-            <Label Text="Event Placeholer"/>
-            <Label Text="Event Placeholer"/>
-        </StackLayout>
+        <!-- Would have used scroll view instead of stack layout if the ability to add events was present -->
+        <ListView Grid.Row="1"
+                  BackgroundColor="{StaticResource ContentBackground}"
+                  ItemsSource="{Binding Events}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HeightRequest="60">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="1" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="8*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding EventTypeLabel}" />
+                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding EventType}" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding EventDateLabel}" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding EventDate}" />
+                        <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Source="sort_right.png" HeightRequest="15" HorizontalOptions="Center" VerticalOptions="Center" />
+                        <BoxView BackgroundColor="{StaticResource BlackText}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Frame Grid.Row="2"
                Margin="0"
                Padding="12,0,12,5"
