@@ -23,6 +23,8 @@ namespace HelloPrism
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>("Main");
+            containerRegistry.RegisterForNavigation<EventsPage, EventsViewModel>("Events");
+            containerRegistry.RegisterForNavigation<EditEventsPage, EditEventsViewModel>("EditEvents");
         }
     }
 }

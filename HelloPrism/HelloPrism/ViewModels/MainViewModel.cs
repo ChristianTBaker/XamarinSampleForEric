@@ -10,7 +10,7 @@ namespace HelloPrism.ViewModels
         public MainViewModel()
         {
             this.Title = "Main Page";
-            this.TextForLabel = "This is some text";
+            this.WelcomeMessage = "Welcome to Xamarin Sample!";
         }
 
         private string title;
@@ -20,11 +20,11 @@ namespace HelloPrism.ViewModels
             set => SetProperty(ref this.title, value);
         }
 
-        private string textForLabel;
-        public string TextForLabel
+        private string welcomeMessage;
+        public string WelcomeMessage
         {
-            get => this.textForLabel;
-            set => SetProperty(ref this.textForLabel, value);
+            get => this.welcomeMessage;
+            set => SetProperty(ref this.welcomeMessage, value);
         }
     }
 }
