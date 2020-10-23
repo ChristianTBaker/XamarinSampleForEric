@@ -14,7 +14,7 @@
         <Label Text="{Binding EventDateLabel}"
                Style="{StaticResource EntryLabelStyle}"/>
 
-        <controls:CustomEntry Text="{Binding EventDateEntry}"
+        <controls:CustomEntry Text="{Binding DateEntry}"
                               Style="{StaticResource EntryStyle}"/>
 
         <ContentView ControlTemplate="{StaticResource PrimaryButton}" />

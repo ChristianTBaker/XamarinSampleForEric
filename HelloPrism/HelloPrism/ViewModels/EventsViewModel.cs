@@ -19,7 +19,7 @@ namespace HelloPrism.ViewModels
         public string HeaderLabel { get; private set; }
         public string PrimaryButtonLabel { get; private set; }
 
-        public List<Event> Events { get; private set; }
+        public List<EventBindingModel> Events { get; private set; }
 
 
         public EventsViewModel(INavigationService navigationService, IProfileManager profileManager, IDataManager dataManager)
@@ -35,11 +35,18 @@ namespace HelloPrism.ViewModels
 
             this.PrimaryButtonCommand = new DelegateCommand(Back);
 
-            this.Events = dataManager.GetEvents();
+            this.Events = new List<EventBindingModel>();
+
+            var eventInfoList = dataManager.GetEvents();
+
+            foreach (Event eventInfo in eventInfoList)
+            {
+                this.Events.Add(new EventBindingModel(_navigationService, eventInfo));
+            }
         }
 
-        private Event _selectedEvent;
-        public Event SelectedEvent
+        private EventBindingModel _selectedEvent;
+        public EventBindingModel SelectedEvent
         {
             get => this._selectedEvent;
             set

@@ -26,6 +26,7 @@ namespace HelloPrism.ViewModels
         public MainViewModel(INavigationService navigationService, IProfileManager profileManager, IDataManager dataManager)
         {
             this._navigationService = navigationService;
+            this._profileManager = profileManager;
 
             this.Title = "Main Page";
             this.HeaderLabel = "Welcome to Xamarin Sample!";
@@ -35,16 +36,6 @@ namespace HelloPrism.ViewModels
             this.PrimaryButtonLabel = "View Service Events";
 
             this.PrimaryButtonCommand = new DelegateCommand(Submit, CanSubmit);
-
-            //Setting MOCK Data
-            var events = new List<Event>();
-            events.Add(new Event(_navigationService, 1, "Inspection", "05 Aug 2020"));
-            events.Add(new Event(_navigationService, 2, "Service", "01 Sep 2020"));
-            events.Add(new Event(_navigationService, 3, "Calibration", "25 Oct, 2020"));
-            events.Add(new Event(_navigationService, 4, "Inspection", "09 Nov, 2020"));
-            events.Add(new Event(_navigationService, 5, "Service", "15 Dec, 2020"));
-            events.Add(new Event(_navigationService, 6, "Inspection", "16 Dec, 2020"));
-            dataManager.SaveEvents(events);
         }
 
         private void Submit()

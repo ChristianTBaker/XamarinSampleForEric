@@ -18,17 +18,26 @@ namespace HelloPrism.Services
 
             if (App.Current.Properties.TryGetValue("Events", out events))
             {
-                EventCollection eventCollection = JsonConvert.DeserializeObject<EventCollection>((string)events);
-
-                return eventCollection.EventList;
+                return JsonConvert.DeserializeObject<List<Event>>((string)events);
             }
+            else
+            {
+                var eventList = new List<Event>();
+                eventList.Add(new Event(1, "Inspection", "05 Aug 2020"));
+                eventList.Add(new Event(2, "Service", "01 Sep 2020"));
+                eventList.Add(new Event(3, "Calibration", "25 Oct, 2020"));
+                eventList.Add(new Event(4, "Inspection", "09 Nov, 2020"));
+                eventList.Add(new Event(5, "Service", "15 Dec, 2020"));
+                eventList.Add(new Event(6, "Inspection", "16 Dec, 2020"));
+                this.SaveEvents(eventList);
 
-            return new List<Event>();
+                return eventList;
+            }
         }
 
         public void SaveEvents(List<Event> eventsList)
         {
-            var eventsJson = JsonConvert.SerializeObject(new EventCollection(eventsList));
+            var eventsJson = JsonConvert.SerializeObject(eventsList, Formatting.Indented);
 
             object events;
 
@@ -38,6 +47,21 @@ namespace HelloPrism.Services
                 App.Current.Properties.Add("Events", eventsJson);
 
             App.Current.SavePropertiesAsync();
+        }
+
+        public void EditEvent(Event eventToUpdate)
+        {
+            var eventList = this.GetEvents();
+
+            for (var i = 0; i < eventList.Count; i++)
+            {
+                if (eventList[i].Id == eventToUpdate.Id)
+                {
+                    eventList[i] = eventToUpdate;
+                }
+            }
+
+            this.SaveEvents(eventList);
         }
     }
 }

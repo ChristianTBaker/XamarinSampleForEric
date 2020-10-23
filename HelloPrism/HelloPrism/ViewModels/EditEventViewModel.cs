@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using HelloPrism.Interfaces;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -7,23 +8,24 @@ using System.Text;
 
 namespace HelloPrism.ViewModels
 {
-    public class EditEventViewModel : BindableBase
+    public class EditEventViewModel : BindableBase, INavigatedAware
     {
         private INavigationService _navigationService;
+        private IDataManager _dataManager;
 
         public DelegateCommand PrimaryButtonCommand { get; private set; }
 
         public string Title { get; private set; }
-        public string HeaderLabel { get; private set; }
         public string EventNameLabel { get; private set; }
         public string EventDateLabel { get; private set; }
         public string PrimaryButtonLabel { get; private set; }
 
         private int _id;
 
-        public EditEventViewModel(INavigationService navigationService)
+        public EditEventViewModel(INavigationService navigationService, IDataManager dataManager)
         {
             this._navigationService = navigationService;
+            this._dataManager = dataManager;
 
             this.Title = "Edit Events Page";
             this.HeaderLabel = $"Edit Event {_id}";
@@ -31,11 +33,13 @@ namespace HelloPrism.ViewModels
             this.EventDateLabel = "Event Date";
             this.PrimaryButtonLabel = "Save Changes";
 
-            this.PrimaryButtonCommand = new DelegateCommand(Save);
+            this.PrimaryButtonCommand = new DelegateCommand(Save, CanSave);
         }
 
         private void Save()
         {
+            this._dataManager.EditEvent(new Models.Event(_id, this.EventNameEntry, this.DateEntry));
+
             //This is a hack made for two reasons"
             // A) I'm already runnning past time and want to skip setting up the ListView to update on item source change
             // B) I would just use CollectionView if I was using a more upto date version of Xamarin
@@ -45,6 +49,15 @@ namespace HelloPrism.ViewModels
 
         }
 
+        private bool CanSave()
+        {
+            if (!string.IsNullOrEmpty(this.EventNameEntry) &&
+                !string.IsNullOrEmpty(this.DateEntry))
+                return true;
+
+            return false;
+        }
+
         public void OnNavigatedTo(NavigationParameters parameters)
         {
             int id;
@@ -52,11 +65,23 @@ namespace HelloPrism.ViewModels
             if (parameters.TryGetValue<int>("Id", out id))
             {
                 this._id = id;
+                this.HeaderLabel = $"Edit Event {_id}";
             }
             else
             {
                 //TODO Add error handeling (skipping for time)
             }
+        }
+
+        public void OnNavigatedFrom(NavigationParameters parameters)
+        {
+        }
+
+        private string _headerLabel;
+        public string HeaderLabel
+        {
+            get => _headerLabel;
+            set => this.SetProperty(ref _headerLabel, value);
         }
 
         private string _eventNameEntry;

@@ -4,9 +4,10 @@ using HelloPrism.Models;
 
 namespace HelloPrism.Interfaces
 {
-    interface IDataManager
+    public interface IDataManager
     {
         public List<Event> GetEvents();
         public void SaveEvents(List<Event> eventsList);
+        public void EditEvent(Event eventToUpdate);
     }
 }
