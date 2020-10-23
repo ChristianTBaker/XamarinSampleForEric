@@ -12,32 +12,49 @@
         <!-- Would have used scroll view instead of stack layout if the ability to add events was present -->
         <ListView Grid.Row="1"
                   BackgroundColor="{StaticResource ContentBackground}"
-                  ItemsSource="{Binding Events}">
+                  ItemsSource="{Binding Events}"
+                  Margin="10,0"
+                  RowHeight="52"
+                  SelectedItem="{Binding SelectedEvent, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.View>
-                            <Grid HeightRequest="60">
+                            <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="1" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="4*" />
                                     <ColumnDefinition Width="8*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding EventTypeLabel}" />
-                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding EventType}" />
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding EventDateLabel}" />
-                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding EventDate}" />
-                                <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Source="sort_right.png" HeightRequest="15" HorizontalOptions="Center" VerticalOptions="Center" />
-                                <BoxView BackgroundColor="{StaticResource BlackText}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"/>
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding EventTypeLabel}"
+                                       Style="{StaticResource EventLabelStyle}" />
+                                <Label Grid.Row="1" Grid.Column="0"
+                                       Text="{Binding EventType}"
+                                       Style="{StaticResource EventSubtextStyle}"
+                                       TextColor="{StaticResource BlackText}"/>
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding EventDateLabel}"
+                                       Style="{StaticResource EventLabelStyle}" />
+                                <Label Grid.Row="1" Grid.Column="1"
+                                       Text="{Binding EventDate}"
+                                       Style="{StaticResource EventSubtextStyle}"/>
+                                <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="2"
+                                       Source="sort_right.png"
+                                       HeightRequest="15"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                                         BackgroundColor="{StaticResource HorizontalRule}"
+                                         HeightRequest="1"/>
                             </Grid>
                         </ViewCell.View>
                     </ViewCell>
-
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

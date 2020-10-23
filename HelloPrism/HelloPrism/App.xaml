@@ -8,6 +8,7 @@
             <Color x:Key="BlackText">#FF000000</Color>
             <Color x:Key="ButtonPrimary">#FFB19595</Color>
             <Color x:Key="ContentBackground">#FFF5F5F5</Color>
+            <Color x:Key="HorizontalRule">#FFE5E5E5</Color>
 
             <Style x:Key="EntryLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="14" />
@@ -21,6 +22,24 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="Margin" Value="0,0,0,10" />
                 <Setter Property="HeightRequest" Value="40" />
+            </Style>
+
+            <Style x:Key="EventLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="{StaticResource BlackText}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="End" />
+                <Setter Property="Margin" Value="3,4,0,0" />
+            </Style>
+
+            <Style x:Key="EventSubtextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Start" />
+                <Setter Property="Margin" Value="3,0,0,4" />
             </Style>
 
             <ControlTemplate x:Key="PrimaryButton">

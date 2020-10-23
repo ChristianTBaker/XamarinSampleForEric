@@ -24,7 +24,7 @@ namespace HelloPrism
         {
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>("Main");
             containerRegistry.RegisterForNavigation<EventsPage, EventsViewModel>("Events");
-            containerRegistry.RegisterForNavigation<EditEventsPage, EditEventsViewModel>("EditEvents");
+            containerRegistry.RegisterForNavigation<EditEventPage, EditEventViewModel>("EditEvent");
         }
     }
 }
