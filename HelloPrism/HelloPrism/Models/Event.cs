@@ -31,10 +31,10 @@ namespace HelloPrism.Models
             this._navigationService.NavigateAsync("EditEvent", navigationParameters);
         }
 
-        public int Id { get; private set; }
-        public string EventTypeLabel { get; private set; }
-        public string EventType { get; private set; }
-        public string EventDateLabel { get; private set; }
-        public string EventDate { get; private set; }
+        public int Id { get; set; }
+        public string EventTypeLabel { get; set; }
+        public string EventType { get; set; }
+        public string EventDateLabel { get; set; }
+        public string EventDate { get; set; }
     }
 }

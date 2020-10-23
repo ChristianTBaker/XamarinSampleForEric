@@ -4,6 +4,8 @@ using Prism.Unity;
 using HelloPrism.Views;
 using HelloPrism.ViewModels;
 using Xamarin.Forms.Xaml;
+using HelloPrism.Interfaces;
+using HelloPrism.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace HelloPrism
@@ -25,6 +27,9 @@ namespace HelloPrism
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>("Main");
             containerRegistry.RegisterForNavigation<EventsPage, EventsViewModel>("Events");
             containerRegistry.RegisterForNavigation<EditEventPage, EditEventViewModel>("EditEvent");
+
+            containerRegistry.Register<IProfileManager, ProfileManager>();
+            containerRegistry.Register<IDataManager, DataManager>();
         }
     }
 }

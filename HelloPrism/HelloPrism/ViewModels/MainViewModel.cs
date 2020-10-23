@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using HelloPrism.Interfaces;
+using HelloPrism.Models;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -10,6 +12,7 @@ namespace HelloPrism.ViewModels
     public class MainViewModel : BindableBase
     {
         private INavigationService _navigationService;
+        private IProfileManager _profileManager;
 
         public DelegateCommand PrimaryButtonCommand { get; private set; }
 
@@ -20,7 +23,7 @@ namespace HelloPrism.ViewModels
         public string EmailLabel { get; private set; }
         public string PrimaryButtonLabel { get; private set; }
 
-        public MainViewModel(INavigationService navigationService)
+        public MainViewModel(INavigationService navigationService, IProfileManager profileManager, IDataManager dataManager)
         {
             this._navigationService = navigationService;
 
@@ -32,10 +35,23 @@ namespace HelloPrism.ViewModels
             this.PrimaryButtonLabel = "View Service Events";
 
             this.PrimaryButtonCommand = new DelegateCommand(Submit, CanSubmit);
+
+            //Setting MOCK Data
+            var events = new List<Event>();
+            events.Add(new Event(_navigationService, 1, "Inspection", "05 Aug 2020"));
+            events.Add(new Event(_navigationService, 2, "Service", "01 Sep 2020"));
+            events.Add(new Event(_navigationService, 3, "Calibration", "25 Oct, 2020"));
+            events.Add(new Event(_navigationService, 4, "Inspection", "09 Nov, 2020"));
+            events.Add(new Event(_navigationService, 5, "Service", "15 Dec, 2020"));
+            events.Add(new Event(_navigationService, 6, "Inspection", "16 Dec, 2020"));
+            dataManager.SaveEvents(events);
         }
 
         private void Submit()
         {
+            //I'm assuming id would come from api and there's not multiple users on a local app
+            _profileManager.SaveProfile(new Models.Profile(1, this.FirstNameEntry, this.LastNameEntry, this.EmailEntry));
+
             _navigationService.NavigateAsync("Events");
         }
 

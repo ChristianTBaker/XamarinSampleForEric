@@ -1,4 +1,5 @@
-﻿using HelloPrism.Models;
+﻿using HelloPrism.Interfaces;
+using HelloPrism.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -18,36 +19,23 @@ namespace HelloPrism.ViewModels
         public string HeaderLabel { get; private set; }
         public string PrimaryButtonLabel { get; private set; }
 
-        public Event[] Events { get; private set; }
+        public List<Event> Events { get; private set; }
 
 
-        public EventsViewModel(INavigationService navigationService)
+        public EventsViewModel(INavigationService navigationService, IProfileManager profileManager, IDataManager dataManager)
         {
             _navigationService = navigationService;
 
             this.Title = "Events Page";
 
-            var name = "Tim";
+            var profile = profileManager.GetProfile();
 
-            this.HeaderLabel = $"Service Events Assigned to {name}";
+            this.HeaderLabel = $"Service Events Assigned to {profile.FirstName}";
             this.PrimaryButtonLabel = "Back to Main Page";
 
             this.PrimaryButtonCommand = new DelegateCommand(Back);
 
-            this.Events = new Event[]
-            {
-                new Event(_navigationService, 1, "Inspection", "05 Aug 2020"),
-                new Event(_navigationService, 2, "Service", "01 Sep 2020"),
-                new Event(_navigationService, 3, "Calibration", "25 Oct, 2020"),
-                new Event(_navigationService, 4, "Inspection", "09 Nov, 2020"),
-                new Event(_navigationService, 5, "Service", "15 Dec, 2020"),
-                new Event(_navigationService, 6, "Inspection", "16 Dec, 2020")
-            };      
-        }
-
-        public void OnAppearing()
-        {
-            this.SelectedEvent = null;
+            this.Events = dataManager.GetEvents();
         }
 
         private Event _selectedEvent;
