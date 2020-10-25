@@ -23,12 +23,12 @@ namespace HelloPrism.Services
             else
             {
                 var eventList = new List<Event>();
-                eventList.Add(new Event(1, "Inspection", "05 Aug 2020"));
-                eventList.Add(new Event(2, "Service", "01 Sep 2020"));
-                eventList.Add(new Event(3, "Calibration", "25 Oct, 2020"));
-                eventList.Add(new Event(4, "Inspection", "09 Nov, 2020"));
-                eventList.Add(new Event(5, "Service", "15 Dec, 2020"));
-                eventList.Add(new Event(6, "Inspection", "16 Dec, 2020"));
+                eventList.Add(new Event(1, "Inspection", new DateTime(2020, 8, 5)));
+                eventList.Add(new Event(2, "Service", new DateTime(2020, 9, 1)));
+                eventList.Add(new Event(3, "Calibration", new DateTime(2020, 10, 25)));
+                eventList.Add(new Event(4, "Inspection", new DateTime(2020, 11, 9)));
+                eventList.Add(new Event(5, "Service", new DateTime(2020, 12, 15)));
+                eventList.Add(new Event(6, "Inspection", new DateTime(2020, 12, 16)));
                 this.SaveEvents(eventList);
 
                 return eventList;

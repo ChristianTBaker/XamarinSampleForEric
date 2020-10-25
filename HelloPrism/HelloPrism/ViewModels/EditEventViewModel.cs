@@ -21,6 +21,7 @@ namespace HelloPrism.ViewModels
         public string PrimaryButtonLabel { get; private set; }
 
         private int _id;
+        private DateTime _validDateTime;
 
         public EditEventViewModel(INavigationService navigationService, IDataManager dataManager)
         {
@@ -37,8 +38,11 @@ namespace HelloPrism.ViewModels
         }
 
         private void Save()
+
+
+
         {
-            this._dataManager.EditEvent(new Models.Event(_id, this.EventNameEntry, this.DateEntry));
+            this._dataManager.EditEvent(new Models.Event(_id, this.EventNameEntry, this._validDateTime));
 
             //This is a hack made for two reasons"
             // A) I'm already runnning past time and want to skip setting up the ListView to update on item source change
@@ -52,8 +56,13 @@ namespace HelloPrism.ViewModels
         private bool CanSave()
         {
             if (!string.IsNullOrEmpty(this.EventNameEntry) &&
-                !string.IsNullOrEmpty(this.DateEntry))
+                !string.IsNullOrEmpty(this.DateEntry) &&
+                DateTime.TryParse(this.DateEntry, out DateTime date))
+            {
+                this._validDateTime = date;
+
                 return true;
+            }
 
             return false;
         }

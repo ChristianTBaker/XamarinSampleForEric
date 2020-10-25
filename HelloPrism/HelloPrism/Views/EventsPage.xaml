@@ -42,8 +42,9 @@
                                        Text="{Binding EventDateLabel}"
                                        Style="{StaticResource EventLabelStyle}" />
                                 <Label Grid.Row="1" Grid.Column="1"
-                                       Text="{Binding EventDate}"
-                                       Style="{StaticResource EventSubtextStyle}"/>
+                                       Text="{Binding EventDate, Converter={StaticResource _dateTimeToStringConverter}}"
+                                       Style="{StaticResource EventSubtextStyle}"
+                                       TextColor="{Binding EventDate, Converter={StaticResource _dateTimeToTextColorConverter}}"/>
                                 <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="2"
                                        Source="sort_right.png"
                                        HeightRequest="15"

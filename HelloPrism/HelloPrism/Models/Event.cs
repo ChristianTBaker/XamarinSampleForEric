@@ -3,7 +3,7 @@ namespace HelloPrism.Models
 {
     public class Event
     {
-        public Event(int id, string eventType, string eventDate)
+        public Event(int id, string eventType, DateTime eventDate)
         {
             this.Id = id;
             this.EventType = eventType;
@@ -12,6 +12,6 @@ namespace HelloPrism.Models
 
         public int Id { get; set; }
         public string EventType { get; set; }
-        public string EventDate { get; set; }
+        public DateTime EventDate { get; set; }
     }
 }
